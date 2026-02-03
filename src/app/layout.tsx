@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Header } from '@/components';
+import { AuthProvider } from '@/context';
 import './globals.css';
 
 const inter = Inter({
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.variable}>
-        <Header userAvatarUrl="https://picsum.photos/seed/user1/200/200" userName="João Silva" />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

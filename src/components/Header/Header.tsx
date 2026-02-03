@@ -1,18 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from '@/context';
 import styles from './Header.module.css';
-
-interface HeaderProps {
-    /** URL do avatar do usuário (opcional) */
-    userAvatarUrl?: string;
-    /** Nome do usuário para alt text */
-    userName?: string;
-}
 
 /**
  * Componente Header - Cabeçalho da aplicação
+ * Agora conectado ao AuthContext
  */
-export function Header({ userAvatarUrl, userName = 'Usuário' }: HeaderProps) {
+export function Header() {
+    const { user, isLoading } = useAuth();
+
     return (
         <header className={styles.header} role="banner">
             <div className={styles.headerContent}>
@@ -23,30 +22,38 @@ export function Header({ userAvatarUrl, userName = 'Usuário' }: HeaderProps) {
                     <span>Minha Lista</span>
                 </Link>
 
-                <nav className={styles.nav} role="navigation" aria-label="Navegação principal">
-                    <Link href="/" className={styles.navLink}>
-                        Início
-                    </Link>
-                    <Link href="/profile/1" className={styles.navLink}>
-                        Minha Lista
-                    </Link>
+                {/* Só mostrar navegação se não estiver carregando e houver usuário */}
+                {!isLoading && user && (
+                    <nav className={styles.nav} role="navigation" aria-label="Navegação principal">
+                        <Link href="/" className={styles.navLink}>
+                            Início
+                        </Link>
+                        <Link href={`/profile/${user.id}`} className={styles.navLink}>
+                            Minha Lista
+                        </Link>
 
-                    {userAvatarUrl && (
                         <Link
-                            href="/profile/1"
+                            href={`/profile/${user.id}`}
                             className={styles.userAvatar}
-                            aria-label={`Perfil de ${userName}`}
+                            aria-label={`Perfil de ${user.name}`}
                         >
                             <Image
-                                src={userAvatarUrl}
-                                alt={`Avatar de ${userName}`}
+                                src={user.avatarUrl}
+                                alt={`Avatar de ${user.name}`}
                                 width={36}
                                 height={36}
                                 className={styles.avatarImage}
                             />
                         </Link>
-                    )}
-                </nav>
+                    </nav>
+                )}
+
+                {/* Se não houver usuário logado (simulado) */}
+                {!isLoading && !user && (
+                    <div className={styles.nav}>
+                        <span className={styles.navLink}>Visitante</span>
+                    </div>
+                )}
             </div>
         </header>
     );
