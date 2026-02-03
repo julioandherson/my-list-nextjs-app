@@ -5,4 +5,5 @@
  * utilizados em toda a aplicação.
  */
 
-export {};
+export { type Item, isValidItem } from './item';
+export { type User, type UserUpdateData, isValidUser } from './user';
