@@ -1,0 +1,48 @@
+.actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.actionButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-md);
+    transition: all var(--transition-base);
+}
+
+.primaryButton {
+    background-color: var(--color-text-primary);
+    color: var(--color-bg-primary);
+}
+
+.primaryButton:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.secondaryButton {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-text-primary);
+    border: 1px solid transparent;
+}
+
+.secondaryButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.removeButton {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-text-secondary);
+}
+
+.removeButton:hover {
+    background-color: rgba(229, 9, 20, 0.2);
+    /* Red tint on hover */
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}

@@ -121,40 +121,7 @@
     margin-bottom: var(--spacing-xl);
 }
 
-.actions {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.actionButton {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    font-size: var(--font-size-md);
-    transition: all var(--transition-base);
-}
-
-.primaryButton {
-    background-color: var(--color-text-primary);
-    color: var(--color-bg-primary);
-}
-
-.primaryButton:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.secondaryButton {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: var(--color-text-primary);
-}
-
-.secondaryButton:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
+/* Actions removidas - ver ItemActions component */
 
 /* Error Styles */
 .errorContainer {

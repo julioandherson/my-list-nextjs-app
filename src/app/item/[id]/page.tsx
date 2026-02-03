@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getItemById, items } from '@/data';
+import { ItemActions } from '@/components';
 import styles from './page.module.css';
 
 // ISR: Revalidar a cada 60 segundos
@@ -79,14 +80,7 @@ export default async function ItemPage({ params }: PageProps) {
 
                     <p className={styles.description}>{item.description}</p>
 
-                    <div className={styles.actions}>
-                        <button className={`${styles.actionButton} ${styles.primaryButton}`}>
-                            ▶ Assistir Agora
-                        </button>
-                        <button className={`${styles.actionButton} ${styles.secondaryButton}`}>
-                            + Minha Lista
-                        </button>
-                    </div>
+                    <ItemActions itemId={item.id} />
                 </div>
             </div>
         </div>
