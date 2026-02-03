@@ -1,66 +1,52 @@
-import Image from 'next/image';
+import { items, getItemsByType } from '@/data';
+import { ItemGrid } from '@/components';
 import styles from './page.module.css';
 
-export default function Home() {
+/**
+ * Página inicial - Geração Estática (SSG)
+ *
+ * Esta página é gerada estaticamente em build time,
+ * pois os dados são buscados de forma síncrona.
+ */
+export default function HomePage() {
+  const movies = getItemsByType('movie');
+  const series = getItemsByType('series');
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{' '}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{' '}
-            or the{' '}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{' '}
-            center.
+    <main className={styles.main}>
+      <div className={styles.container}>
+        {/* Hero Section */}
+        <section className={styles.hero} aria-labelledby="hero-title">
+          <h1 id="hero-title" className={styles.heroTitle}>
+            Descubra filmes e séries incríveis
+          </h1>
+          <p className={styles.heroSubtitle}>
+            Explore nossa coleção de títulos selecionados e encontre sua próxima aventura
+            cinematográfica.
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+          <div className={styles.stats}>
+            <div className={styles.stat}>
+              <div className={styles.statValue}>{items.length}</div>
+              <div className={styles.statLabel}>Títulos</div>
+            </div>
+            <div className={styles.stat}>
+              <div className={styles.statValue}>{movies.length}</div>
+              <div className={styles.statLabel}>Filmes</div>
+            </div>
+            <div className={styles.stat}>
+              <div className={styles.statValue}>{series.length}</div>
+              <div className={styles.statLabel}>Séries</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Grid de Filmes */}
+        <ItemGrid items={movies} title="🎬 Filmes" emptyMessage="Nenhum filme disponível" />
+
+        {/* Grid de Séries */}
+        <ItemGrid items={series} title="📺 Séries" emptyMessage="Nenhuma série disponível" />
+      </div>
+    </main>
   );
 }

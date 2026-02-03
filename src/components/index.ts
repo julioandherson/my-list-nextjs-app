@@ -1,8 +1,7 @@
 /**
  * Componentes reutilizáveis da aplicação
- *
- * Este diretório contém componentes de UI que são compartilhados
- * em diferentes partes da aplicação.
  */
 
-export {};
+export { Header } from './Header';
+export { ItemCard } from './ItemCard';
+export { ItemGrid } from './ItemGrid';
