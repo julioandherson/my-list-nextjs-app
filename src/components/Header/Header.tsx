@@ -25,12 +25,7 @@ export function Header() {
                 {/* Só mostrar navegação se não estiver carregando e houver usuário */}
                 {!isLoading && user && (
                     <nav className={styles.nav} role="navigation" aria-label="Navegação principal">
-                        <Link href="/" className={styles.navLink}>
-                            Início
-                        </Link>
-                        <Link href={`/profile/${user.id}`} className={styles.navLink}>
-                            Minha Lista
-                        </Link>
+                        {/* Links removidos conforme solicitação */}
 
                         <Link
                             href={`/profile/${user.id}`}

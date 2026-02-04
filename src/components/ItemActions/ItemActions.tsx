@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '@/context';
+import { useAuth, useToast } from '@/context';
 import styles from './ItemActions.module.css';
 
 interface ItemActionsProps {
@@ -10,6 +10,7 @@ interface ItemActionsProps {
 
 export function ItemActions({ itemId }: ItemActionsProps) {
     const { user, updateProfile, isLoading } = useAuth();
+    const { showToast } = useToast();
     const [isUpdating, setIsUpdating] = useState(false);
 
     // Verifica se o item está na lista do usuário
@@ -35,13 +36,20 @@ export function ItemActions({ itemId }: ItemActionsProps) {
         setIsUpdating(false);
     };
 
+    const handleWatchNow = () => {
+        showToast('Filme muito bom!!');
+    };
+
     if (isLoading) {
         return null; // Ou um placeholder/skeleton
     }
 
     return (
         <div className={styles.actions}>
-            <button className={`${styles.actionButton} ${styles.primaryButton}`}>
+            <button
+                className={`${styles.actionButton} ${styles.primaryButton}`}
+                onClick={handleWatchNow}
+            >
                 ▶ Assistir Agora
             </button>
 

@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 import { Header, RouteGuard } from '@/components';
-import { AuthProvider } from '@/context';
+import { AuthProvider, ToastProvider } from '@/context';
 import './globals.css';
 
 const inter = Inter({
@@ -20,10 +20,12 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={inter.variable}>
         <AuthProvider>
-          <RouteGuard>
-            <Header />
-            {children}
-          </RouteGuard>
+          <ToastProvider>
+            <RouteGuard>
+              <Header />
+              {children}
+            </RouteGuard>
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>
