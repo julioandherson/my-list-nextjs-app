@@ -7,6 +7,7 @@ import { User, UserUpdateData } from '@/types';
 let users: User[] = [
     {
         id: '1',
+        username: 'joao',
         name: 'João Silva',
         email: 'joao.silva@email.com',
         avatarUrl: 'https://picsum.photos/seed/user1/200/200',
@@ -15,6 +16,7 @@ let users: User[] = [
     },
     {
         id: '2',
+        username: 'maria',
         name: 'Maria Santos',
         email: 'maria.santos@email.com',
         avatarUrl: 'https://picsum.photos/seed/user2/200/200',
@@ -22,6 +24,9 @@ let users: User[] = [
         createdAt: '2024-02-20T14:45:00Z',
     },
 ];
+
+// Senha hardcoded para todos os usuários
+const DEFAULT_PASSWORD = '123';
 
 /**
  * Busca um usuário pelo ID
@@ -96,6 +101,7 @@ export function resetUsers(): void {
     users = [
         {
             id: '1',
+            username: 'joao',
             name: 'João Silva',
             email: 'joao.silva@email.com',
             avatarUrl: 'https://picsum.photos/seed/user1/200/200',
@@ -104,6 +110,7 @@ export function resetUsers(): void {
         },
         {
             id: '2',
+            username: 'maria',
             name: 'Maria Santos',
             email: 'maria.santos@email.com',
             avatarUrl: 'https://picsum.photos/seed/user2/200/200',
@@ -111,4 +118,17 @@ export function resetUsers(): void {
             createdAt: '2024-02-20T14:45:00Z',
         },
     ];
+}
+
+/**
+ * Autentica um usuário com username e senha
+ */
+export function authenticateUser(username: string, password: string): User | null {
+    // Verifica a senha padrão
+    if (password !== DEFAULT_PASSWORD) {
+        return null;
+    }
+
+    const user = users.find((u) => u.username === username);
+    return user || null;
 }

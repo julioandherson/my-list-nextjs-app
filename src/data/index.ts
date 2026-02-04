@@ -10,4 +10,5 @@ export {
     removeFromUserList,
     getAllUsers,
     resetUsers,
+    authenticateUser,
 } from './users';

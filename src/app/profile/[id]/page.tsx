@@ -14,7 +14,7 @@ interface ProfilePageProps {
 
 export default function ProfilePage({ params }: ProfilePageProps) {
     const { id } = use(params);
-    const { user, isLoading: isAuthLoading, updateProfile } = useAuth();
+    const { user, isLoading: isAuthLoading, updateProfile, logout } = useAuth();
     const router = useRouter();
 
     const [savedItems, setSavedItems] = useState<Item[]>([]);
@@ -105,7 +105,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
 
                 <div className={styles.userInfo}>
                     <h1 className={styles.userName}>{user.name}</h1>
-                    <p className={styles.userEmail}>{user.email}</p>
+                    <p className={styles.userEmail}>@{user.username}</p>
                     <p className={styles.memberSince}>
                         Membro desde {new Date(user.createdAt).toLocaleDateString('pt-BR')}
                     </p>
@@ -154,6 +154,25 @@ export default function ProfilePage({ params }: ProfilePageProps) {
                                 </button>
                             </div>
                         </form>
+                    )}
+
+                    {!isEditing && (
+                        <button
+                            onClick={logout}
+                            style={{
+                                marginTop: '16px',
+                                display: 'block',
+                                color: '#e50914',
+                                background: 'transparent',
+                                border: '1px solid #e50914',
+                                padding: '8px 16px',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            Sair
+                        </button>
                     )}
                 </div>
             </div>

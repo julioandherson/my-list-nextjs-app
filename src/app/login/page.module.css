@@ -1,0 +1,95 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--color-bg-primary);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)), url('https://picsum.photos/seed/bg/1920/1080');
+    background-size: cover;
+    background-position: center;
+}
+
+.loginCard {
+    width: 100%;
+    max-width: 450px;
+    padding: 60px 68px 40px;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: var(--radius-md);
+    margin: 0 var(--spacing-md);
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #fff;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputGroup {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+    padding: 16px 20px;
+    background: #333;
+    border-radius: 4px;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+}
+
+.input::placeholder {
+    color: #8c8c8c;
+}
+
+.button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 24px;
+    background-color: var(--color-primary);
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.button:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.error {
+    color: #e87c03;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.helpText {
+    margin-top: 50px;
+    color: #737373;
+    font-size: 16px;
+}
+
+.demoCredentials {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #ccc;
+}

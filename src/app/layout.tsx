@@ -1,6 +1,5 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Header } from '@/components';
+import { Header, RouteGuard } from '@/components';
 import { AuthProvider } from '@/context';
 import './globals.css';
 
@@ -10,12 +9,7 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-export const metadata: Metadata = {
-  title: 'Minha Lista | Filmes e Séries',
-  description:
-    'Descubra filmes e séries incríveis. Explore nossa coleção de títulos selecionados.',
-  keywords: ['filmes', 'séries', 'streaming', 'entretenimento'],
-};
+// ... metadata ...
 
 export default function RootLayout({
   children,
@@ -26,8 +20,10 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={inter.variable}>
         <AuthProvider>
-          <Header />
-          {children}
+          <RouteGuard>
+            <Header />
+            {children}
+          </RouteGuard>
         </AuthProvider>
       </body>
     </html>

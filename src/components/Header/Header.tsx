@@ -35,7 +35,8 @@ export function Header() {
                         <Link
                             href={`/profile/${user.id}`}
                             className={styles.userAvatar}
-                            aria-label={`Perfil de ${user.name}`}
+                            aria-label={`Perfil de ${user.username}`}
+                            title={user.username}
                         >
                             <Image
                                 src={user.avatarUrl}

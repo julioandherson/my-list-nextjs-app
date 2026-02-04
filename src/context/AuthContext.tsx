@@ -8,13 +8,14 @@ import {
     ReactNode,
     useCallback,
 } from 'react';
+import { useRouter } from 'next/navigation';
 import { User, UserUpdateData } from '@/types';
-import { getUserById } from '@/data';
+import { getUserById, authenticateUser } from '@/data';
 
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
-    login: (userId: string) => Promise<void>;
+    login: (username: string, password: string) => Promise<boolean>;
     logout: () => void;
     updateProfile: (data: UserUpdateData) => Promise<boolean>;
 }
@@ -24,84 +25,60 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
-    // Simular persistência de sessão
+    // Verificar sessão ao carregar
     useEffect(() => {
         const storedUserId = localStorage.getItem('auth_user_id');
         if (storedUserId) {
-            // Simular delay de rede
+            // Simular delay mínimo
             setTimeout(() => {
                 const foundUser = getUserById(storedUserId);
                 if (foundUser) {
                     setUser(foundUser);
                 }
                 setIsLoading(false);
-            }, 500);
+            }, 100);
         } else {
-            // Auto-login para demonstração se não houver sessão
-            const demoUser = getUserById('1');
-            if (demoUser) {
-                setUser(demoUser);
-                localStorage.setItem('auth_user_id', demoUser.id);
-            }
-            setIsLoading(false);
+            setTimeout(() => setIsLoading(false), 0);
         }
     }, []);
 
-    const login = useCallback(async (userId: string) => {
+    const login = useCallback(async (username: string, password: string) => {
         setIsLoading(true);
-        // Simular API call
-        await new Promise((resolve) => setTimeout(resolve, 500));
 
-        const foundUser = getUserById(userId);
-        if (foundUser) {
-            setUser(foundUser);
-            localStorage.setItem('auth_user_id', userId);
+        // Autenticação direta contra o mock
+        const authenticatedUser = authenticateUser(username, password);
+
+        if (authenticatedUser) {
+            setUser(authenticatedUser);
+            localStorage.setItem('auth_user_id', authenticatedUser.id);
+            setIsLoading(false);
+            return true;
         }
+
         setIsLoading(false);
+        return false;
     }, []);
 
     const logout = useCallback(() => {
         setUser(null);
         localStorage.removeItem('auth_user_id');
-    }, []);
+        router.push('/login');
+    }, [router]);
 
     const updateProfile = useCallback(
         async (data: UserUpdateData) => {
             if (!user) return false;
 
-            // Otimistic updates
+            // Otimistic updates local
             const updatedUser = { ...user, ...data };
             setUser(updatedUser);
 
-            try {
-                // Na prática seria um fetch PATCH /api/users/[id]
-                // Aqui estamos chamando a "DB" diretamente por estarmos no mesmo projeto sem DB real
-                // Mas para simular corretamente, vamos fazer um fetch
-                const response = await fetch(`/api/users/${user.id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Falha ao atualizar');
-                }
-
-                const result = await response.json();
-                if (result.success) {
-                    setUser(result.data);
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error('Erro ao atualizar perfil:', error);
-                // Reverter em caso de erro
-                setUser(user);
-                return false;
-            }
+            // Persistir no "DB" mock
+            // Em um cenário real, faria request. Aqui, apenas atualizamos o estado.
+            // O mock em `data/users.ts` é resetado on reload, mas o estado Context persiste na sessão.
+            return true;
         },
         [user]
     );

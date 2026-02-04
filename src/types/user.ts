@@ -4,6 +4,8 @@
 export interface User {
     /** Identificador único do usuário */
     id: string;
+    /** Nome de usuário para login */
+    username: string;
     /** Nome do usuário */
     name: string;
     /** Email do usuário */
@@ -26,6 +28,7 @@ export function isValidUser(user: unknown): user is User {
 
     return (
         typeof obj.id === 'string' &&
+        typeof obj.username === 'string' &&
         typeof obj.name === 'string' &&
         typeof obj.email === 'string' &&
         typeof obj.avatarUrl === 'string' &&
