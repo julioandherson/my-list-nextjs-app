@@ -7,11 +7,11 @@ import { User, UserUpdateData } from '@/types';
 let users: User[] = [
     {
         id: '1',
-        username: 'joao',
-        name: 'João Silva',
-        email: 'joao.silva@email.com',
+        username: 'julio',
+        name: 'Julio Silva',
+        email: 'julio.silva@email.com',
         avatarUrl: 'https://picsum.photos/seed/user1/200/200',
-        myList: ['1', '4', '7', '9'],
+        myList: ['1'],
         createdAt: '2024-01-15T10:30:00Z',
     },
     {

@@ -43,7 +43,7 @@ export default function LoginPage() {
                     <div className={styles.inputGroup}>
                         <input
                             type="text"
-                            placeholder="Usuário (ex: joao)"
+                            placeholder="Usuário (ex: julio)"
                             className={styles.input}
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -72,7 +72,7 @@ export default function LoginPage() {
                 </form>
 
                 <div className={styles.demoCredentials}>
-                    <strong>Login Simplificado:</strong>
+                    <strong>Login:</strong>
                     <ul style={{ paddingLeft: '20px', marginTop: '10px' }}>
                         {validUsers.map(u => (
                             <li key={u.id}>

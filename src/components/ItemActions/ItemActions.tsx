@@ -13,12 +13,10 @@ export function ItemActions({ itemId }: ItemActionsProps) {
     const { showToast } = useToast();
     const [isUpdating, setIsUpdating] = useState(false);
 
-    // Verifica se o item está na lista do usuário
     const isInList = user?.myList?.includes(itemId) || false;
 
     const handleListToggle = async () => {
         if (!user) {
-            // Aqui poderia redirecionar para login ou abrir modal
             alert('Você precisa estar logado para salvar itens.');
             return;
         }
@@ -41,7 +39,7 @@ export function ItemActions({ itemId }: ItemActionsProps) {
     };
 
     if (isLoading) {
-        return null; // Ou um placeholder/skeleton
+        return null;
     }
 
     return (

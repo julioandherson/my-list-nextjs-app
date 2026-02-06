@@ -1,7 +1,7 @@
 import { Item } from '@/types';
 
 /**
- * Dados fictícios de filmes e séries
+ * Dados MOCKS de filmes e séries
  */
 export const items: Item[] = [
     {

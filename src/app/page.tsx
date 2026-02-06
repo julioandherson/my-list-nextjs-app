@@ -2,12 +2,6 @@ import { items, getItemsByType } from '@/data';
 import { ItemGrid } from '@/components';
 import styles from './page.module.css';
 
-/**
- * Página inicial - Geração Estática (SSG)
- *
- * Esta página é gerada estaticamente em build time,
- * pois os dados são buscados de forma síncrona.
- */
 export default function HomePage() {
   const movies = getItemsByType('movie');
   const series = getItemsByType('series');
@@ -18,11 +12,10 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className={styles.hero} aria-labelledby="hero-title">
           <h1 id="hero-title" className={styles.heroTitle}>
-            Descubra filmes e séries incríveis
+            Lista de filmes e séries
           </h1>
           <p className={styles.heroSubtitle}>
-            Explore nossa coleção de títulos selecionados e encontre sua próxima aventura
-            cinematográfica.
+            Explore nossa coleção de títulos.
           </p>
 
           <div className={styles.stats}>
@@ -40,11 +33,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Grid de Filmes */}
         <ItemGrid items={movies} title="🎬 Filmes" emptyMessage="Nenhum filme disponível" />
-
-        {/* Grid de Séries */}
         <ItemGrid items={series} title="📺 Séries" emptyMessage="Nenhuma série disponível" />
       </div>
     </main>
