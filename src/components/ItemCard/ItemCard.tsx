@@ -4,13 +4,9 @@ import { Item } from '@/models';
 import styles from './ItemCard.module.css';
 
 interface ItemCardProps {
-    /** Dados do item a ser exibido */
     item: Item;
 }
 
-/**
- * Componente ItemCard - Card para exibir um filme ou série
- */
 export function ItemCard({ item }: ItemCardProps) {
     const typeLabel = item.type === 'movie' ? 'Filme' : 'Série';
 

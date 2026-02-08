@@ -9,8 +9,6 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-// ... metadata ...
-
 export default function RootLayout({
   children,
 }: Readonly<{

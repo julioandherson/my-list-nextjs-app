@@ -27,18 +27,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
 
-    // Verificar sessão ao carregar
     useEffect(() => {
         const storedUserId = localStorage.getItem('auth_user_id');
         if (storedUserId) {
-            // Simular delay mínimo
             setTimeout(() => {
                 const foundUser = getUserById(storedUserId);
                 if (foundUser) {
                     setUser(foundUser);
                 }
                 setIsLoading(false);
-            }, 100);
+            }, 100); // Delay de 100ms para simular uma requisição real
         } else {
             setTimeout(() => setIsLoading(false), 0);
         }
@@ -47,7 +45,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const login = useCallback(async (username: string, password: string) => {
         setIsLoading(true);
 
-        // Autenticação direta contra o mock
         const authenticatedUser = authenticateUser(username, password);
 
         if (authenticatedUser) {
@@ -71,13 +68,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         async (data: UserUpdateData) => {
             if (!user) return false;
 
-            // Otimistic updates local
             const updatedUser = { ...user, ...data };
             setUser(updatedUser);
-
-            // Persistir no "DB" mock
-            // Em um cenário real, faria request. Aqui, apenas atualizamos o estado.
-            // O mock em `data/users.ts` é resetado on reload, mas o estado Context persiste na sessão.
             return true;
         },
         [user]

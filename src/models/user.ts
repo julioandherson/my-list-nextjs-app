@@ -18,9 +18,6 @@ export interface User {
     createdAt: string;
 }
 
-/**
- * Valida se um objeto é um User válido
- */
 export function isValidUser(user: unknown): user is User {
     if (typeof user !== 'object' || user === null) return false;
 
@@ -38,9 +35,6 @@ export function isValidUser(user: unknown): user is User {
     );
 }
 
-/**
- * Dados permitidos para atualização do usuário
- */
 export interface UserUpdateData {
     name?: string;
     avatarUrl?: string;

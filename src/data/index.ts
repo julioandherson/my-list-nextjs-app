@@ -1,7 +1,3 @@
-/**
- * Dados fictícios da aplicação
- */
-
 export { items, getItemById, getItemsByGenre, getItemsByType } from './items';
 export {
     getUserById,

@@ -124,7 +124,6 @@ export function resetUsers(): void {
  * Autentica um usuário com username e senha
  */
 export function authenticateUser(username: string, password: string): User | null {
-    // Verifica a senha padrão
     if (password !== DEFAULT_PASSWORD) {
         return null;
     }

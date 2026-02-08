@@ -41,7 +41,6 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     try {
         const body: UserUpdateData = await request.json();
 
-        // Validar campos permitidos
         const allowedFields: (keyof UserUpdateData)[] = ['name', 'avatarUrl', 'myList'];
         const invalidFields = Object.keys(body).filter(
             (key) => !allowedFields.includes(key as keyof UserUpdateData)

@@ -27,14 +27,10 @@ export default function ProfilePage({ params }: ProfilePageProps) {
 
     useEffect(() => {
         // Redirecionar se não estiver logado ou se tentar acessar perfil de outro usuário
-        // (Simplificado para este projeto avaliativo)
         if (!isAuthLoading && (!user || user.id !== id)) {
             if (!user) {
-                // Se não tem user, talvez ainda esteja carregando ou não logado
-                // Mas como isAuthLoading é false, então não está logado
                 router.push('/');
             } else {
-                // Se tem user mas id é diferente, redireciona para o próprio perfil
                 router.push(`/profile/${user.id}`);
             }
         } else if (user) {
@@ -42,7 +38,6 @@ export default function ProfilePage({ params }: ProfilePageProps) {
         }
     }, [user, id, isAuthLoading, router]);
 
-    // Buscar itens salvos
     useEffect(() => {
         async function fetchSavedItems() {
             if (!user?.myList || user.myList.length === 0) {
@@ -53,7 +48,6 @@ export default function ProfilePage({ params }: ProfilePageProps) {
 
             setIsLoadingItems(true);
             try {
-                // Buscar todos os itens (cacheado pelo next)
                 const response = await fetch('/api/items');
                 const data = await response.json();
 

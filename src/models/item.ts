@@ -22,9 +22,6 @@ export interface Item {
     type: 'movie' | 'series';
 }
 
-/**
- * Valida se um objeto é um Item válido
- */
 export function isValidItem(item: unknown): item is Item {
     if (typeof item !== 'object' || item === null) return false;
 

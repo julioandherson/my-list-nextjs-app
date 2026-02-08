@@ -3,17 +3,11 @@ import { ItemCard } from '../ItemCard';
 import styles from './ItemGrid.module.css';
 
 interface ItemGridProps {
-    /** Lista de itens a serem exibidos */
     items: Item[];
-    /** Título da seção (opcional) */
     title?: string;
-    /** Mensagem quando não há itens */
     emptyMessage?: string;
 }
 
-/**
- * Componente ItemGrid - Grid responsivo de cards
- */
 export function ItemGrid({
     items,
     title,

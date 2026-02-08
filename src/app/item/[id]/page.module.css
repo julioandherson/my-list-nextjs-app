@@ -121,9 +121,6 @@
     margin-bottom: var(--spacing-xl);
 }
 
-/* Actions removidas - ver ItemActions component */
-
-/* Error Styles */
 .errorContainer {
     display: flex;
     flex-direction: column;

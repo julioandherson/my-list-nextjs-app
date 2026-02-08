@@ -12,7 +12,7 @@ export function RouteGuard({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (isLoading) return;
 
-        // Se estiver logado e na página de login, manda pra home
+        // Só manda para Home se já estiver logado
         if (user && pathname === '/login') {
             router.replace('/');
             return;
@@ -24,7 +24,6 @@ export function RouteGuard({ children }: { children: React.ReactNode }) {
         }
     }, [user, isLoading, pathname, router]);
 
-    // Se estiver carregando, mostra nada ou um loader simples
     if (isLoading) {
         return (
             <div style={{
