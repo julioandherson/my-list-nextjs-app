@@ -8,7 +8,7 @@ export default function HomePage() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.container}>
+      <div className="container">
         {/* Hero Section */}
         <section className={styles.hero} aria-labelledby="hero-title">
           <h1 id="hero-title" className={styles.heroTitle}>
