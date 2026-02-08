@@ -1,0 +1,133 @@
+import { User, UserUpdateData } from '@/models';
+
+/**
+ * Dados fictícios de usuários
+ * Em uma aplicação real, isso viria de um banco de dados
+ */
+let users: User[] = [
+    {
+        id: '1',
+        username: 'julio',
+        name: 'Julio Silva',
+        email: 'julio.silva@email.com',
+        avatarUrl: 'https://i.pinimg.com/736x/bd/d9/aa/bdd9aaee8c129b1d0a7180512c6f7ae5.jpg',
+        myList: ['1'],
+        createdAt: '2024-01-15T10:30:00Z',
+    },
+    {
+        id: '2',
+        username: 'maria',
+        name: 'Maria Santos',
+        email: 'maria.santos@email.com',
+        avatarUrl: 'https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg',
+        myList: ['2', '3', '6', '8', '10'],
+        createdAt: '2024-02-20T14:45:00Z',
+    },
+];
+
+// Senha hardcoded para todos os usuários
+const DEFAULT_PASSWORD = '123';
+
+/**
+ * Busca um usuário pelo ID
+ */
+export function getUserById(id: string): User | undefined {
+    return users.find((user) => user.id === id);
+}
+
+/**
+ * Atualiza os dados de um usuário
+ */
+export function updateUser(id: string, data: UserUpdateData): User | null {
+    const userIndex = users.findIndex((user) => user.id === id);
+
+    if (userIndex === -1) {
+        return null;
+    }
+
+    const updatedUser: User = {
+        ...users[userIndex],
+        ...data,
+    };
+
+    users[userIndex] = updatedUser;
+
+    return updatedUser;
+}
+
+/**
+ * Adiciona um item à lista do usuário
+ */
+export function addToUserList(userId: string, itemId: string): User | null {
+    const user = getUserById(userId);
+
+    if (!user) {
+        return null;
+    }
+
+    if (user.myList.includes(itemId)) {
+        return user;
+    }
+
+    return updateUser(userId, { myList: [...user.myList, itemId] });
+}
+
+/**
+ * Remove um item da lista do usuário
+ */
+export function removeFromUserList(userId: string, itemId: string): User | null {
+    const user = getUserById(userId);
+
+    if (!user) {
+        return null;
+    }
+
+    return updateUser(userId, {
+        myList: user.myList.filter((id) => id !== itemId),
+    });
+}
+
+/**
+ * Retorna todos os usuários (para fins de teste)
+ */
+export function getAllUsers(): User[] {
+    return users;
+}
+
+/**
+ * Reseta os usuários para o estado inicial (para fins de teste)
+ */
+export function resetUsers(): void {
+    users = [
+        {
+            id: '1',
+            username: 'julio',
+            name: 'Julio Silva',
+            email: 'julio.silva@email.com',
+            avatarUrl: 'https://i.pinimg.com/736x/bd/d9/aa/bdd9aaee8c129b1d0a7180512c6f7ae5.jpg',
+            myList: ['1'],
+            createdAt: '2024-01-15T10:30:00Z',
+        },
+        {
+            id: '2',
+            username: 'maria',
+            name: 'Maria Santos',
+            email: 'maria.santos@email.com',
+            avatarUrl: 'https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg',
+            myList: ['2', '3', '6', '8', '10'],
+            createdAt: '2024-02-20T14:45:00Z',
+        },
+    ];
+}
+
+/**
+ * Autentica um usuário com username e senha
+ */
+export function authenticateUser(username: string, password: string): User | null {
+    if (password !== DEFAULT_PASSWORD) {
+        return null;
+    }
+
+    const user = users.find((u) => u.username === username);
+    return user || null;
+}
