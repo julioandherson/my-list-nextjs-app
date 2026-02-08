@@ -5,7 +5,7 @@
     min-height: 100vh;
     background-color: var(--color-bg-primary);
     background-image: linear-gradient(rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.6)), url('https://picsum.photos/seed/bg/1920/1080');
+            rgba(0, 0, 0, 0.6)), url('https://i.pinimg.com/736x/1f/af/ac/1fafacdf26b2da86cbcabc01461689cc.jpg');
     background-size: cover;
     background-position: center;
 }

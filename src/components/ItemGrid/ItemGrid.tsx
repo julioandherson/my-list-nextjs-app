@@ -1,4 +1,4 @@
-import { Item } from '@/types';
+import { Item } from '@/models';
 import { ItemCard } from '../ItemCard';
 import styles from './ItemGrid.module.css';
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getUserById, updateUser } from '@/data';
-import { UserUpdateData } from '@/types';
+import { UserUpdateData } from '@/models';
 
 interface RouteParams {
     params: Promise<{ id: string }>;

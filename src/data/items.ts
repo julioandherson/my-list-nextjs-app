@@ -1,4 +1,4 @@
-import { Item } from '@/types';
+import { Item } from '@/models';
 
 /**
  * Dados MOCKS de filmes e séries

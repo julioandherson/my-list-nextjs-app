@@ -9,7 +9,7 @@ import {
     useCallback,
 } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, UserUpdateData } from '@/types';
+import { User, UserUpdateData } from '@/models';
 import { getUserById, authenticateUser } from '@/data';
 
 interface AuthContextType {

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Item } from '@/types';
+import { Item } from '@/models';
 import styles from './ItemCard.module.css';
 
 interface ItemCardProps {

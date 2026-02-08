@@ -1,4 +1,4 @@
-import { User, UserUpdateData } from '@/types';
+import { User, UserUpdateData } from '@/models';
 
 /**
  * Dados fictícios de usuários
@@ -10,7 +10,7 @@ let users: User[] = [
         username: 'julio',
         name: 'Julio Silva',
         email: 'julio.silva@email.com',
-        avatarUrl: 'https://picsum.photos/seed/user1/200/200',
+        avatarUrl: 'https://i.pinimg.com/736x/bd/d9/aa/bdd9aaee8c129b1d0a7180512c6f7ae5.jpg',
         myList: ['1'],
         createdAt: '2024-01-15T10:30:00Z',
     },
@@ -19,7 +19,7 @@ let users: User[] = [
         username: 'maria',
         name: 'Maria Santos',
         email: 'maria.santos@email.com',
-        avatarUrl: 'https://picsum.photos/seed/user2/200/200',
+        avatarUrl: 'https://i.pinimg.com/736x/a9/75/93/a975934bb378afc4ca8c133df451f56e.jpg',
         myList: ['2', '3', '6', '8', '10'],
         createdAt: '2024-02-20T14:45:00Z',
     },
