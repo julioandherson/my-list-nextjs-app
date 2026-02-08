@@ -9,7 +9,7 @@ describe('Users Data', () => {
         it('deve retornar a lista inicial de usuários', () => {
             const users = getAllUsers();
             expect(users).toHaveLength(2);
-            expect(users[0].username).toBe('joao');
+            expect(users[0].username).toBe('julio');
             expect(users[1].username).toBe('maria');
         });
     });
@@ -18,7 +18,7 @@ describe('Users Data', () => {
         it('deve retornar o usuário correto pelo ID', () => {
             const user = getUserById('1');
             expect(user).toBeDefined();
-            expect(user?.name).toBe('João Silva');
+            expect(user?.name).toBe('Julio Silva');
         });
 
         it('deve retornar undefined para ID inexistente', () => {
@@ -29,13 +29,13 @@ describe('Users Data', () => {
 
     describe('authenticateUser', () => {
         it('deve autenticar com credenciais corretas', () => {
-            const user = authenticateUser('joao', '123');
+            const user = authenticateUser('julio', '123');
             expect(user).toBeDefined();
-            expect(user?.username).toBe('joao');
+            expect(user?.username).toBe('julio');
         });
 
         it('deve falhar com senha incorreta', () => {
-            const user = authenticateUser('joao', 'wrongpass');
+            const user = authenticateUser('julio', 'wrongpass');
             expect(user).toBeNull();
         });
 
