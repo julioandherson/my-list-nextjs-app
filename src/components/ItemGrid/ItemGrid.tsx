@@ -1,5 +1,5 @@
 import { Item } from '@/models';
-import { ItemCard } from '../ItemCard';
+import { ItemCard } from '../ItemCard/ItemCard';
 import styles from './ItemGrid.module.css';
 
 interface ItemGridProps {
